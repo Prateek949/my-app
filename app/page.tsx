@@ -1,8 +1,13 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+
 import { ShoppingBag, TrendingUp } from "lucide-react";
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navigation */}
@@ -15,46 +20,39 @@ export default function Home() {
             <span className="font-bold text-xl">Products</span>
           </Link>
 
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link
-              href="/"
-              className="font-medium hover:text-black/70 transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className="font-medium hover:text-black/70 transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/services"
-              className="font-medium hover:text-black/70 transition-colors"
-            >
-              Services
-            </Link>
-            <Link
-              href="/products"
-              className="font-medium hover:text-black/70 transition-colors"
-            >
-              Products
-            </Link>
-            <Link
-              href="/contact"
-              className="font-medium hover:text-black/70 transition-colors"
-            >
-              Contact Us
-            </Link>
+            <Link href="/" className="font-medium hover:text-black/70 transition-colors">Home</Link>
+            <Link href="/about" className="font-medium hover:text-black/70 transition-colors">About Us</Link>
+            <Link href="/services" className="font-medium hover:text-black/70 transition-colors">Services</Link>
+            <Link href="/products" className="font-medium hover:text-black/70 transition-colors">Products</Link>
+            <Link href="/contact" className="font-medium hover:text-black/70 transition-colors">Contact Us</Link>
           </nav>
+
+          {/* Mobile Menu Button */}
+          <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
+            ☰
+          </button>
 
           <Link
             href="/get-started"
-            className="bg-black text-white px-4 py-2 rounded-md font-medium hover:bg-black/90 transition-colors"
+            className="hidden md:inline-block bg-black text-white px-4 py-2 rounded-md font-medium hover:bg-black/90 transition-colors"
           >
             Get Started
           </Link>
         </div>
+
+        {/* Mobile Nav Dropdown */}
+        {menuOpen && (
+          <div className="md:hidden flex flex-col items-start px-4 py-2 bg-amber-950 text-white space-y-2">
+            <Link href="/" className="hover:text-amber-300" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link href="/about" className="hover:text-amber-300" onClick={() => setMenuOpen(false)}>About Us</Link>
+            <Link href="/services" className="hover:text-amber-300" onClick={() => setMenuOpen(false)}>Services</Link>
+            <Link href="/products" className="hover:text-amber-300" onClick={() => setMenuOpen(false)}>Products</Link>
+            <Link href="/contact" className="hover:text-amber-300" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+            <Link href="/get-started" className="hover:text-amber-300" onClick={() => setMenuOpen(false)}>Get Started</Link>
+          </div>
+        )}
       </header>
 
       <main>
