@@ -85,7 +85,7 @@ export default function Home() {
                     className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
                   >
                     <TrendingUp className="h-5 w-5" />
-                    <span>What's Trending?</span>
+                    <span>What is Trending?</span>
                   </Link>
                 </div>
               </div>
